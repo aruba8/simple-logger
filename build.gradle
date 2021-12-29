@@ -1,0 +1,29 @@
+plugins {
+    id 'org.springframework.boot' version '2.5.0'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+}
+
+group 'ca.erik'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.telegram:telegrambots-spring-boot-starter:5.5.0'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+}
+
+dependencies {
+    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+}
+
+test {
+    useJUnitPlatform()
+}
