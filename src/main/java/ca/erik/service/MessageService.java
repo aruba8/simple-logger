@@ -23,7 +23,6 @@ public record MessageService(UsersService usersService, TextService textService,
     private final static String SUPERGROUP_TYPE = "supergroup";
 
     public SendMessage handleUpdate(Update update) {
-        logger.info("Update from chatId: {}, type: {}", update.getMessage().getChat().getId(), update.getMessage().getChat().getType());
         SendMessage sendMessage = null;
         switch (update.getMessage().getChat().getType()) {
             case SUPERGROUP_TYPE, GROUP_TYPE -> sendMessage = handleGroupUpdate(update);
