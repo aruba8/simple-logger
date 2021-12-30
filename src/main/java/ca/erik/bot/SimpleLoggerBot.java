@@ -31,7 +31,7 @@ public class SimpleLoggerBot extends TelegramWebhookBot {
 
     @Override
     public BotApiMethod<?> onWebhookUpdateReceived(Update update) {
-        return messageService.getMessage(update);
+        return messageService.handleUpdate(update);
     }
 
     @Override

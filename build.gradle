@@ -15,13 +15,18 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.telegram:telegrambots-spring-boot-starter:5.5.0'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    compileOnly 'org.projectlombok:lombok:1.18.22'
+    annotationProcessor 'org.projectlombok:lombok:1.18.22'
+    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+
+    testCompileOnly 'org.projectlombok:lombok:1.18.22'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.22'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
-}
 
-dependencies {
-    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
 }
 
 test {
