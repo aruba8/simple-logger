@@ -24,7 +24,7 @@ public record MessageService(UsersService usersService, TextService textService,
 
     public SendMessage handleUpdate(Update update) {
         SendMessage sendMessage = null;
-        if (update.getMessage().getChat() != null){
+        if (update.getMessage() != null) {
             switch (update.getMessage().getChat().getType()) {
                 case SUPERGROUP_TYPE, GROUP_TYPE -> sendMessage = handleGroupUpdate(update);
                 case PRIVATE_TYPE -> sendMessage = handlePrivateChat(update);
