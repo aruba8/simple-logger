@@ -43,7 +43,7 @@ public record MessageService(UsersService usersService, TextService textService,
         logMessage(message);
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(message.getChat().getId().toString());
-        sendMessage.setText(message.getText());
+        if (message.getText() != null) sendMessage.setText(message.getText());
         return sendMessage;
     }
 
