@@ -24,10 +24,12 @@ public record MessageService(UsersService usersService, TextService textService,
 
     public SendMessage handleUpdate(Update update) {
         SendMessage sendMessage = null;
-        switch (update.getMessage().getChat().getType()) {
-            case SUPERGROUP_TYPE, GROUP_TYPE -> sendMessage = handleGroupUpdate(update);
-            case PRIVATE_TYPE -> sendMessage = handlePrivateChat(update);
-            case CHANNEL_TYPE -> sendMessage = handleChannel(update);
+        if (update.getMessage().getChat() != null){
+            switch (update.getMessage().getChat().getType()) {
+                case SUPERGROUP_TYPE, GROUP_TYPE -> sendMessage = handleGroupUpdate(update);
+                case PRIVATE_TYPE -> sendMessage = handlePrivateChat(update);
+                case CHANNEL_TYPE -> sendMessage = handleChannel(update);
+            }
         }
         return sendMessage;
     }
