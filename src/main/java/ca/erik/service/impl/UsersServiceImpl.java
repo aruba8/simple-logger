@@ -5,6 +5,7 @@ import ca.erik.repository.UserRepository;
 import ca.erik.service.UsersService;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -35,6 +36,7 @@ public class UsersServiceImpl implements UsersService {
     public User findOrCreate(User user) {
         User userInDb = userRepository.findFirstByTgId(user.getTgId());
         if (userInDb == null) {
+            user.setCreated(new Date());
             userInDb = create(user);
         }
         return userInDb;

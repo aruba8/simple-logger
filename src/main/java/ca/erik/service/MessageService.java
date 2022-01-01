@@ -54,9 +54,7 @@ public record MessageService(UsersService usersService, TextService textService,
     }
 
     private void logMessage(Message message) {
-        Chat messageChat = chatFromMessage(message);
-        Chat chat = chatService.findOrCreate(messageChat);
-        logger.info("Chat: {}", chat);
+
         User messageUser = userFromMessage(message);
         User user = usersService.findOrCreate(messageUser);
         logger.info("User: {}", user);
@@ -72,17 +70,23 @@ public record MessageService(UsersService usersService, TextService textService,
         user.setTgId(message.getFrom().getId());
         user.setLangCode(message.getFrom().getLanguageCode());
         user.setIsBot(message.getFrom().getIsBot());
-        user.setCreated(new Date());
         return user;
     }
 
     private Text textFromMessage(Message message) {
         Text text = new Text();
+        Chat messageChat = chatFromMessage(message);
+        Chat chat = chatService.findOrCreate(messageChat);
+        text.setFromUser(userFromMessage(message));
         text.setChatId(message.getChatId());
         text.setFromUserId(message.getFrom().getId());
         text.setText(message.getText());
         text.setDate(new Date(message.getDate() * 1000L));
         text.setMessageId(message.getMessageId());
+        text.setChat(chat);
+        if (message.getReplyToMessage() != null) {
+            text.setReplyToText(textFromMessage(message.getReplyToMessage()));
+        }
         return text;
     }
 
@@ -94,5 +98,4 @@ public record MessageService(UsersService usersService, TextService textService,
         chat.setType(message.getChat().getType());
         return chat;
     }
-
 }

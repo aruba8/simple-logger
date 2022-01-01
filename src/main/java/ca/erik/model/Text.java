@@ -14,8 +14,11 @@ public class Text {
     private String id;
     private Integer messageId;
     private Long chatId;
+    private Chat chat;
     private Long fromUserId;
     private String text;
     private Date date;
+    private Text replyToText;
+    private User fromUser;
 
 }
